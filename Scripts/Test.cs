@@ -7,7 +7,7 @@ public class Test : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        Debug.Log("LS 建立的分支");
     }
 
     // Update is called once per frame
