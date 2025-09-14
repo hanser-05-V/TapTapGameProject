@@ -8,6 +8,7 @@ public class Test : MonoBehaviour
     void Start()
     {
         Debug.Log("LS 建立的分支");
+        Debug.Log("YMJ建立的分支");
     }
 
     // Update is called once per frame
