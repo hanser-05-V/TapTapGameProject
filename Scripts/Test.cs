@@ -9,6 +9,7 @@ public class Test : MonoBehaviour
     {
         Debug.Log("LS 建立的分支");
         Debug.Log("YMJ建立的分支");
+        Debug.Log("Hello Unity!");
     }
 
     // Update is called once per frame
