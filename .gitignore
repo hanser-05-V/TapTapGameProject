@@ -1,0 +1,43 @@
+# Unity specific folders to ignore
+/Library/
+/Temp/
+/Obj/
+/Build/
+/Builds/
+/Logs/
+/UserSettings/
+
+# Ignore HybridCLR and MemoryCaptures
+/HybridCLRData/
+/MemoryCaptures/
+
+# Keep .meta files in Assets folder
+!Assets/**/*.meta
+
+# Ignore IDE-specific and build system files
+.vs/
+/.gradle/
+*.csproj
+*.sln
+*.user
+
+# Unity cache and crash reports
+sysinfo.txt
+*.pidb
+*.pdb
+*.mdb
+
+# Builds and packages
+*.apk
+*.unitypackage
+
+# Addressables temporary files
+Assets/AddressableAssetsData/*/*.bin*
+
+# StreamingAssets temporary files
+Assets/StreamingAssets/aa.meta
+Assets/StreamingAssets/aa/*
+
+# Unity cache
+/BuildCache/
+/BuildEncryptCache/
