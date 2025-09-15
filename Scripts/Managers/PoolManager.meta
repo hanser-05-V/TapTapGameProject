@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<<< HEAD:Scripts/Managers/PoolManager.meta
 guid: faf93bd74c35afa49bd20e25304c8964
+========
+guid: e73de14078f5ee54aafc9b0e90ae99ec
+>>>>>>>> 13319c7ca363b2e041f1d8a5beca0948de15a9e0:Scripts/TapTapGameProject.meta
 folderAsset: yes
 DefaultImporter:
   externalObjects: {}
