@@ -1,0 +1,16 @@
+VisualElement panel = new VisualElement();
+panel.style.width = 300;
+panel.style.height = 150;
+panel.style.backgroundColor = Color.gray;
+panel.style.paddingTop = 10;
+panel.style.paddingLeft = 10;
+panel.style.flexDirection = FlexDirection.Column;
+
+var title = new Label("My Panel");
+title.style.unityFontStyleAndWeight = FontStyle.Bold;
+panel.Add(title);
+
+var button = new Button(() => Debug.Log("Button pressed")) { text = "Press me" };
+panel.Add(button);
+
+rootVisualElement.Add(panel);
