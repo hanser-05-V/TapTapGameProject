@@ -90,7 +90,7 @@ public class PoolData
  
 }
 
-public class PoolManager : BaseManagers<PoolManager>
+public class PoolManager : BaseManager<PoolManager>
 {
     private PoolManager() { }
     //池子（柜子）容器

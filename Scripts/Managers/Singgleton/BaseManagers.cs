@@ -6,7 +6,7 @@ using UnityEngine;
 
 //未继承 Mono 管理者者单例类
 //管理者要声明显示 私有构造函数
-public class BaseManagers<T> where T : class
+public class BaseManager<T> where T : class
 {
 
     private static T instance;
