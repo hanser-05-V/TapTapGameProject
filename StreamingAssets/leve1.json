@@ -1,0 +1,12 @@
+[
+{"id":1,"avacter":"Avacter_1","context":"test1","Intervaltime":2,"isBugShow":false,"AngleValue":10},
+{"id":1,"avacter":"Avacter_2","context":"test2","Intervaltime":2,"isBugShow":true,"AngleValue":20},
+{"id":1,"avacter":"Avacter_1","context":"test3","Intervaltime":2,"isBugShow":false,"AngleValue":30},
+{"id":1,"avacter":"Avacter_1","context":"test4","Intervaltime":5,"isBugShow":false,"AngleValue":40},
+{"id":1,"avacter":"Avacter_1","context":"test5","Intervaltime":6,"isBugShow":false,"AngleValue":50},
+{"id":1,"avacter":"Avacter_1","context":"test6","Intervaltime":10,"isBugShow":false,"AngleValue":60},
+{"id":1,"avacter":"Avacter_1","context":"test7","Intervaltime":10,"isBugShow":false,"AngleValue":70},
+{"id":1,"avacter":"Avacter_1","context":"test8","Intervaltime":15,"isBugShow":false,"AngleValue":80},
+{"id":2,"avacter":"Avacter_2","context":"test9","Intervaltime":2,"isBugShow":false,"AngleValue":90},
+{"id":3,"avacter":"Avacter_1","context":"test10","Intervaltime":3,"isBugShow":false,"AngleValue":100}
+]
