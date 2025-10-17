@@ -2,17 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class E_PopTransType : MonoBehaviour
+public enum E_PopTransType
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    //随机
+    Random,
+    //路线1
+    RouteOne,
+    //路线2
+    RouteTwo,
+    //路线3
+    RouteThree,
 }

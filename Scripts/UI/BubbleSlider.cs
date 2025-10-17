@@ -10,7 +10,8 @@ public class BubbleSlider : MonoBehaviour
     [LabelText("消息之间的间隔距离"), SerializeField]
     private float spacing = 30f;
 
-    public int index;
+    [LabelText("左右消息距离 倍数")]
+    public float index; 
 
     public RectTransform context; // content容器改为RectTransform
     public RectTransform defultTransform; // 默认位置改为RectTransform

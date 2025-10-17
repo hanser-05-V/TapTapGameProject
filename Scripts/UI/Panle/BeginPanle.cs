@@ -19,6 +19,8 @@ public class BeginPanle : BasePanle
         startButton.onClick.AddListener(OnStartButtonClick);
         settingButton.onClick.AddListener(OnSettingButtonClick);
         exitButton.onClick.AddListener(OnExitButtonClick);
+
+      
     }
 
     private void OnStartButtonClick()
@@ -29,7 +31,8 @@ public class BeginPanle : BasePanle
     }
     private void OnSettingButtonClick()
     {
-        Debug.Log("设置按钮被点击");
+        UIMgr.Instance.Show<SettingPanle>();
+
     }
     private void OnExitButtonClick()
     {

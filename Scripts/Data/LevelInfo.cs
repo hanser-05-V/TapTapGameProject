@@ -11,7 +11,9 @@ public class LevelInfo
 
     public float Intervaltime; //间隔时间
 
+    public float AngleValue; //增加的怒气值
     public bool isBugShow; //是否显示bug
+   
+    public string DataName; //关卡数据名称
 
-    public float AngleValue; //怒气值
 }

@@ -36,7 +36,7 @@ public class UIMgr : BaseManager<UIMgr>
     {
         //面板名 面板名和挂载在身上脚本名 一致
         string panleName = typeof(T).Name;
-       
+
         //如果存在面板 之间取出来激活
         if (panleDic.ContainsKey(panleName))
         {
@@ -75,10 +75,15 @@ public class UIMgr : BaseManager<UIMgr>
             //     panle.Showme();
 
             //     panleDic.Add(panleName, panle);
-           
+
         }
     }
 
+    /// <summary> 隐藏面板
+    /// 
+    /// </summary>
+    /// <typeparam name="T"></typeparam>
+    /// <param name="isFade"></param>
     public void Hide<T>(bool isFade = true) where T : BasePanle
     {
         //TODO:进一步优化
@@ -89,12 +94,27 @@ public class UIMgr : BaseManager<UIMgr>
             panle.Hideme(isFade, () =>
             {
                 //TODO:优化销毁
-                
+
                 //失活
                 panle.gameObject.SetActive(false);
             });
-         
+
         }
     }
 
+    
+    public T GetPanle<T>() where T : BasePanle //得到面板
+    {
+        //面板名 面板名和挂载在身上脚本名 一致
+        string panleName = typeof(T).Name;
+        if (panleDic.ContainsKey(panleName) && panleDic[panleName].gameObject.activeSelf)  //有记录而且处于激活状态
+        {
+            return panleDic[panleName] as T;
+        }
+        else
+        {
+            Debug.LogError(panleName + "未记录 或 面板被隐藏了");
+            return null;
+        }
+    }
 }

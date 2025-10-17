@@ -16,4 +16,8 @@ public enum E_EventType
     /// </summary>
     E_PopupBugGame,
 
+    /// <summary> 爬虫游戏
+    /// 
+    /// </summary>
+    E_CrawBugGame,
 }

@@ -6,7 +6,7 @@ public class MainTest : MonoBehaviour
 {
     // //TODO:GamePanle 面板  现在测试直接进行引用
     // [SerializeField] private Camera uiCamera;
-    [SerializeField] private GamePanle gamePanle;
+    [SerializeField] private LeveOneGamePanle gamePanle;
     // [SerializeField] private LayerMask whatIsBug;
     void Start()
     {
@@ -43,8 +43,8 @@ public class MainTest : MonoBehaviour
         //鼠标射线检测
         if (Input.GetMouseButtonDown(1))
         {
-            // UIMgr.Instance.Show<GamePanle>();
-            gamePanle.SendMassage();
+            UIMgr.Instance.Show<LeveOneGamePanle>();
+            // gamePanle.SendMassage();
         }
        
 

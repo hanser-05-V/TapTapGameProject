@@ -2,8 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum E_PopSize 
+public class BugData : ScriptableObject
 {
-    Small, //小
-    Big, //大
+    
 }

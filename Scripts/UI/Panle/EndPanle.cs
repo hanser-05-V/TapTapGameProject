@@ -45,7 +45,7 @@ public class EndPanle : BasePanle
         UIMgr.Instance.Hide<EndPanle>();
 
         //TODO：再次开始游戏
-        UIMgr.Instance.Show<GamePanle>();
+        UIMgr.Instance.Show<LeveOneGamePanle>();
     }
     
     public void ChangeTipText(string text)
