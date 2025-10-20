@@ -1,13 +1,16 @@
 using System.Collections;
 using System.Collections.Generic;
-using Unity.Profiling;
+
 using UnityEngine;
+using UnityEngine.Rendering.Universal;
 
 public class UIMgr : BaseManager<UIMgr>
 {
     private Canvas uiCanVas;
     private GameObject eventSystem;
     private Camera uiCamera;
+    //主摄像机
+    private Camera mainCamera;
     private UIMgr()
     {
         //动态创建Canvas 、摄像机 、EventSystem 
@@ -20,6 +23,8 @@ public class UIMgr : BaseManager<UIMgr>
         eventSystem = GameObject.Instantiate(ResMgr.Instance.LoadRes<GameObject>("UI/EventSystem"));
         GameObject.DontDestroyOnLoad(eventSystem);
 
+        //设置渲染摄像机
+        uiCanVas.worldCamera = uiCamera;
 
 
     }
@@ -32,8 +37,13 @@ public class UIMgr : BaseManager<UIMgr>
     /// 
     /// </summary>
     /// <typeparam name="T"></typeparam>
-    public T Show<T>() where T : BasePanle
+    public T Show<T>(bool isFade = true) where T : BasePanle
     {
+        // //把UiCamera加入到主摄像机的栈
+        // 获取主摄像机的UniversalAdditionalCameraData并添加到堆栈
+        var mainCameraData = Camera.main.GetUniversalAdditionalCameraData();
+        mainCameraData.cameraStack.Add(uiCamera);
+
         //面板名 面板名和挂载在身上脚本名 一致
         string panleName = typeof(T).Name;
 
@@ -47,7 +57,7 @@ public class UIMgr : BaseManager<UIMgr>
             //TODO:激活
             panle.gameObject.SetActive(true);
             //显示面板
-            panle.Showme();
+            panle.Showme(isFade);
 
             return panle as T;
         }
@@ -62,7 +72,7 @@ public class UIMgr : BaseManager<UIMgr>
                 GameObject panleObj = GameObject.Instantiate(res);
                 panleObj.transform.SetParent(uiCanVas.transform, false);
                 panle = panleObj.GetComponent<BasePanle>();
-                panle.Showme();
+                panle.Showme(isFade);
 
                 panleDic.Add(panleName, panle);
             });

@@ -22,20 +22,11 @@ public class LeveOneGamePanle : BasePanle
     [LabelText("设置按钮"), BoxGroup("面板相关/组件相关", false), SerializeField]
     private Button settingBtn;
 
-    [FoldoutGroup("弹窗游戏相关")]
-    [LabelText("刷新位置列表-Romdom"), BoxGroup("弹窗游戏相关/数据", false), SerializeField]
-    private List<RectTransform> RandomPosList = new List<RectTransform>();
-    [LabelText("刷新位置列表-路线1"), BoxGroup("弹窗游戏相关/数据", false), SerializeField]
-    private List<RectTransform> RouteOne = new List<RectTransform>();
-    [LabelText("刷新位置列表-路线2"), BoxGroup("弹窗游戏相关/数据", false), SerializeField]
-    private List<RectTransform> RouteTwo = new List<RectTransform>();
-    [LabelText("刷新位置列表-路线3"), BoxGroup("弹窗游戏相关/数据", false), SerializeField]
-    private List<RectTransform> RouteThree = new List<RectTransform>();
 
     //测试使用
     public bool isRight;
     //本关的 数据列表
-    private List<LevelInfo> levelInfos = new List<LevelInfo>();
+    private List<LevelOneInfo> leveOneInfos = new List<LevelOneInfo>();
     //当前是消息的索引
     private int index = 0;
 
@@ -52,8 +43,8 @@ public class LeveOneGamePanle : BasePanle
     }
     void Start()
     {
-        levelInfos = GameDataMgr.Instance.levelData_1;
-        Debug.Log("当前关卡数据：" + levelInfos.Count);
+        leveOneInfos = GameDataMgr.Instance.levelData_1;
+        Debug.Log("当前关卡数据：" + leveOneInfos.Count);
         currentAngerValue = AngerMeterSystem.Instance.CurrentAngerValue;
 
         settingBtn.onClick.AddListener(OnSetButtonClick);
@@ -80,7 +71,7 @@ public class LeveOneGamePanle : BasePanle
     {
         yield return new WaitForSeconds(1f); //先等待2 秒 确保数据加载完毕
         //取出当前关卡数据
-        LevelInfo levelInfo = levelInfos[index];
+        LevelOneInfo levelInfo = leveOneInfos[index];
 
         //是否为游戏结束标准
         if (levelInfo.id == 0)
@@ -91,7 +82,7 @@ public class LeveOneGamePanle : BasePanle
         }
 
         //创建 发送 消息 (这里默认都是左侧发)
-        SendMassage(levelInfo.avacter,levelInfo.context);
+        SendMassage(levelInfo.avacter,levelInfo.context,levelInfo.isRight);
 
         //判断是否显示bug
         if (levelInfo.isBugShow)
@@ -105,34 +96,37 @@ public class LeveOneGamePanle : BasePanle
             BugData bugData = ResMgr.Instance.LoadRes<BugData>("Data/" + levelInfo.id + "/" + levelInfo.DataName);
 
             yield return bugData;
-            //确定bug 刷新路线
-            //TODO:优化 确定路线
+            //确定进去游戏
             if (levelInfo.id == 1)
             {
-                E_PopTransType transType = (bugData as PopupData).popTransType;
-                switch (transType)
-                {
-                    case E_PopTransType.Random:
-                        currentPosList = RandomPosList;
-                        break;
-                    case E_PopTransType.RouteOne:
-                        currentPosList = RouteOne;
-                        break;
-                    case E_PopTransType.RouteTwo:
-                        currentPosList = RouteTwo;
-                        break;
-                    case E_PopTransType.RouteThree:
-                        currentPosList = RouteThree;
-                        break;
-                }
-
+                //TODO:优化 确定路线
+                // E_PopTransType transType = (bugData as PopupData).popTransType;
+                // switch (transType)
+                // {
+                //     case E_PopTransType.Random:
+                //         currentPosList = RandomPosList;
+                //         break;
+                //     case E_PopTransType.RouteOne:
+                //         currentPosList = RouteOne;
+                //         break;
+                //     case E_PopTransType.RouteTwo:
+                //         currentPosList = RouteTwo;
+                //         break;
+                //     case E_PopTransType.RouteThree:
+                //         currentPosList = RouteThree;
+                //         break;
+                // }
                 //创建关卡一数据传入
-                PopGameInfo popGameInfo = new PopGameInfo(bugData, currentPosList);
-
-                //TODO：开始 弹窗 游戏
+                // PopGameInfo popGameInfo = new PopGameInfo(bugData, currentPosList);
+              
                 Debug.Log("触发弹窗游戏事件");
-                EventCenter.Instance.EventTrigger(E_EventType.E_PopupBugGame, popGameInfo);
-
+                EventCenter.Instance.EventTrigger(E_EventType.E_PopupBugGame, bugData);
+            }
+            else if(levelInfo.id == 2)
+            {
+                Debug.Log("触发爬虫游戏事件");
+                //TODO：开始 爬虫 游戏
+                EventCenter.Instance.EventTrigger(E_EventType.E_CrawBugGame, bugData);
             }
 
             //等待1帧再进行发消息 //TODO：这里先给几秒方便测试

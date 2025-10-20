@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class FSM 
 {
-    private IState currentState; // 当前状态
+    public IState CurrentState { get; private set; } // 当前状态
 
     /// <summary> 初始化状态
     /// 
@@ -12,23 +12,23 @@ public class FSM
     /// <param name="beginState"></param>
     public void InitState(IState beginState)
     {
-        currentState = beginState;
-        currentState.OnEnter();
+        CurrentState = beginState;
+        CurrentState.OnEnter();
     }
     
     public void ChangeState(IState newState)
     {
-        if (currentState != null)
+        if (CurrentState != null)
         {
-            currentState.OnExit();
+            CurrentState.OnExit();
         }
         else
         {
             Debug.LogError("当前状态为空，无法切换");
         }
 
-        currentState = newState;
-        currentState.OnEnter();
+        CurrentState = newState;
+        CurrentState.OnEnter();
 
     }
 }

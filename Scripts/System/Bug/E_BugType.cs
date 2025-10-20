@@ -13,5 +13,8 @@ public enum E_BugType
     PopupBugGame,
 
     /// <summary> 爬行虫类型的BUG  -长按工具（电蚊拍）
-    CrawBugGame
+    CrawBugGame,
+    /// <summary> 输入错误类型的BUG  - 输入工具
+    InputBugGame,
 }
+

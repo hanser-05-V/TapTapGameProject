@@ -12,8 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ed3c5f37737ff394fb294709e77554e9, type: 3}
   m_Name: 2
   m_EditorClassIdentifier: 
-  fockType: 1
+  fockType: 0
   popCount: 1
   growDir: 6
   popSize: 1
-  popTransType: 0
+  popTransType: 1
+  popNum: 5
+  growInterval: 0.25
+  popInterval: 0.15

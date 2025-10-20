@@ -1,0 +1,11 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class CrawTopLeftMove : ICrawMoveStrategy
+{
+    public override void Move(Craw craw, E_CrawMoveType moveType)
+    {
+        
+    }
+}

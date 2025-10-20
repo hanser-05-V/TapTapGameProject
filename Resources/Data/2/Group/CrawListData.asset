@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9d0e309ca0c436d49bc79f768c6c1392, type: 3}
+  m_Name: CrawListData
+  m_EditorClassIdentifier: 
+  crawList:
+  - {fileID: 11400000, guid: 3ee49e1e233480c4d809df20e279ca0a, type: 2}
+  - {fileID: 11400000, guid: 17fd92f3a522e7b41bcf0915faf52319, type: 2}
+  - {fileID: 11400000, guid: fe7db08f0900b454bb74a763455dbaa6, type: 2}
+  - {fileID: 11400000, guid: 18461b0f1bb0fd644ab43b9fc2ffaefe, type: 2}
+  - {fileID: 11400000, guid: 54a4f225fff9f9f4996d56ee084c2d4e, type: 2}

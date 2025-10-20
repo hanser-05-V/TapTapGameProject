@@ -833,22 +833,6 @@ MonoBehaviour:
   bubbleSlider: {fileID: 1713823435292239577}
   angerSlider: {fileID: 7929332028095204207}
   settingBtn: {fileID: 2186921586188152953}
-  RandomPosList:
-  - {fileID: 4215776552161835413}
-  - {fileID: 8350845218924117187}
-  - {fileID: 9114995685897836768}
-  - {fileID: 3615287514622092778}
-  - {fileID: 2822982845772907979}
-  - {fileID: 4056184836446192321}
-  RouteOne:
-  - {fileID: 1571773716993439354}
-  - {fileID: 6162440097518181874}
-  - {fileID: 5426706166446887511}
-  - {fileID: 3562624021383129208}
-  - {fileID: 4148597901896592365}
-  - {fileID: 6428047334327938934}
-  RouteTwo: []
-  RouteThree: []
   isRight: 0
 --- !u!1 &4016974891217985368
 GameObject:
@@ -1748,7 +1732,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   messagrList: []
   spacing: 30
-  index: 5.5
+  index: 8
   context: {fileID: 6984151722388077374}
   defultTransform: {fileID: 6385835549327533605}
 --- !u!1 &8985706999112491804

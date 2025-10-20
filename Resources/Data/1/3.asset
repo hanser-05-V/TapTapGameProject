@@ -12,8 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ed3c5f37737ff394fb294709e77554e9, type: 3}
   m_Name: 3
   m_EditorClassIdentifier: 
-  fockType: 2
-  popCount: 0
+  bugType: 1
+  fockType: 0
+  popCount: 3
   growDir: 7
   popSize: 1
   popTransType: 1
+  popNum: 3
+  growInterval: 0.5
+  popInterval: 0.15
+  reduceValue: 5

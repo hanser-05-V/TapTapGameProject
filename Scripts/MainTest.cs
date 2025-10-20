@@ -6,11 +6,13 @@ public class MainTest : MonoBehaviour
 {
     // //TODO:GamePanle 面板  现在测试直接进行引用
     // [SerializeField] private Camera uiCamera;
-    [SerializeField] private LeveOneGamePanle gamePanle;
+    // [SerializeField] private LeveOneGamePanle gamePanle;
     // [SerializeField] private LayerMask whatIsBug;
+
+    [SerializeField] private LeveTwoGamePanle leveTwoGame;
     void Start()
     {
-
+        // EventCenter.Instance.EventTrigger(E_EventType.E_CrawBugGame);
        
     }
 
@@ -41,10 +43,11 @@ public class MainTest : MonoBehaviour
         #region  以下是测试代码
 
         //鼠标射线检测
-        if (Input.GetMouseButtonDown(1))
+        if (Input.GetMouseButtonDown(2))
         {
-            UIMgr.Instance.Show<LeveOneGamePanle>();
-            // gamePanle.SendMassage();
+            // UIMgr.Instance.Show<LeveOneGamePanle>();
+            // // gamePanle.SendMassage();
+            leveTwoGame.StartGame();
         }
        
 

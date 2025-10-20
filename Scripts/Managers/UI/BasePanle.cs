@@ -28,16 +28,22 @@ public class BasePanle : MonoBehaviour
     /// <param name="isFade"></param>
     public virtual void Showme(bool isFade = true)
     {
-        canvasGroup.DOFade(1, showTime);
+        if (isFade)
+            canvasGroup.DOFade(1, showTime);
+        else
+            canvasGroup.alpha = 1;
     }
     /// <summary> 隐藏面板
     /// 
     /// </summary>
     /// <param name="isFade"> 是否为 淡出 默认为是 </param>
     /// <param name="callBack"> 隐藏后 处理回调 </param>
-    public virtual void Hideme(bool isFade = true,DG.Tweening.TweenCallback callBack = null) 
+    public virtual void Hideme(bool isFade = true,DG.Tweening.TweenCallback callBack = null)
     {
-        canvasGroup.DOFade(0, hideTime).OnComplete(callBack);
+        if (isFade)
+            canvasGroup.DOFade(0, hideTime).OnComplete(callBack);
+        else
+            canvasGroup.alpha = 0;
     }
     
 }

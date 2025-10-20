@@ -6,38 +6,47 @@ using Unity.VisualScripting;
 using UnityEngine;
 
 public class PopupBugGame : MonoBehaviour
-{
-
-    [LabelText("小弹窗预设"), SerializeField] //TODO:优化 后续通过缓存池加载
+{   
+    
+    [FoldoutGroup("弹窗预设")]
+    [LabelText("小弹窗预设"),BoxGroup("弹窗预设/弹窗预设体相关",false ), SerializeField] //TODO:优化 后续通过缓存池加载
     private GameObject smallPopupPrefab;
 
-    [LabelText("小弹窗预设"), SerializeField] //TODO:优化 后续通过缓存池加载
+    [LabelText("小弹窗预设"),BoxGroup("弹窗预设/弹窗预设体相关",false ),SerializeField] //TODO:优化 后续通过缓存池加载
     private GameObject bigPopupPrefab;
 
-    [LabelText("弹窗生成范围"), SerializeField] //TODO:加载 在场景中动态加载  这里先直接赋值
+    [LabelText("弹窗生成范围"), BoxGroup("弹窗预设/弹窗预设体相关",false ),SerializeField] //TODO:加载 在场景中动态加载  这里先直接赋值
     private RectTransform imageRange;
-    
     [Space(5)]
-
-    [LabelText("弹窗数量限制")]
-    [SerializeField]
+    [FoldoutGroup("弹窗数量限制相关")]
+    [LabelText("弹窗数量限制"), BoxGroup("弹窗数量限制相关/弹窗数量",false),SerializeField]
     private int maxPopupCount = 5; // 指定最大生成弹窗的数量
     private int currentPopupCount = 0; // 当前生成的弹窗数量
 
-    [LabelText("多种类型弹窗时 生成的间隔时间")]
-    public float interval = 0.5f; // 多种类型弹窗之间的间隔距离
-    [LabelText("弹窗之间的控制间距")]
+    [LabelText("生长弹窗时间"), BoxGroup("弹窗数量限制相关/弹出时间", false)]
+    public float growPopInterval = 0.5f; // 多种类型弹窗之间的间隔 时间 
+    [LabelText("弹窗和弹窗之间间隔时间"), BoxGroup("弹窗数量限制相关/弹窗时间", false)]
+    public float popInterval = 0.5f; // 多种类型弹窗之间的间隔 时间
+    
+    [LabelText("弹窗之间的控制间距"),BoxGroup("弹窗数量限制相关/弹窗间隔",false)]
     public Vector2 popupSpacing;  // 控制水平方向和垂直方向的间距
 
     [Space(5)]
-    // //测试使用
-    // [LabelText("刷新位置列表-Romdom"), SerializeField]
-    // private List<RectTransform> RandomPosList = new List<RectTransform>();
-  
+    [FoldoutGroup("弹窗位置相关")]
+    [LabelText("Romdom路线"), BoxGroup("弹窗位置相关/Romdom路线", false), SerializeField]
+    private List<RectTransform> RandomPosList = new List<RectTransform>();
+    [LabelText("路线一"), BoxGroup("弹窗位置相关/路线一", false), SerializeField]
+    private List<RectTransform> RouteOne = new List<RectTransform>();
+    [LabelText("路线二"), BoxGroup("弹窗位置相关/路线二", false), SerializeField]
+    private List<RectTransform> RouteTwo = new List<RectTransform>();
+    [LabelText("路线二"), BoxGroup("弹窗位置相关/路线二", false), SerializeField]
+    private List<RectTransform> RouteThree = new List<RectTransform>();
+
     private GameObject mainPupObj; // 主弹窗对象
 
     [LabelText("小 游戏 数据 ")]
     public PopupData popData; //测试公开
+
     [LabelText("当前位置列表")] //测试公开
     public List<RectTransform> currentPosList = new List<RectTransform>();
 
@@ -50,20 +59,49 @@ public class PopupBugGame : MonoBehaviour
     }
     private void OnEnable()
     {
-        EventCenter.Instance.RegisterEventListener<PopGameInfo>(E_EventType.E_PopupBugGame, StartGame);
+        EventCenter.Instance.RegisterEventListener<BugData>(E_EventType.E_PopupBugGame, StartGame);
     }
     private void OnDisable()
     {
-        EventCenter.Instance.UnRegisterEventListener<PopGameInfo>(E_EventType.E_PopupBugGame, StartGame);
+        EventCenter.Instance.UnRegisterEventListener<BugData>(E_EventType.E_PopupBugGame, StartGame);
     }
-    public void StartGame(PopGameInfo popInfo)
+    public void StartGame(BugData bugData)
     {
 
-        popData = popInfo.bugData as PopupData;
-        currentPosList = popInfo.popRectTeansList; 
+        popData = bugData as PopupData;
+        // currentPosList = popInfo.popRectTeansList; 
+        //解数据
+        InitPupGame(popData);
 
         // 开始生成弹窗
         StartCoroutine(CreatePopup());
+    }
+
+    private void InitPupGame(PopupData popData)
+    {
+        //确定生成路线
+        switch (popData.popTransType)
+        {
+            case E_PopTransType.Random:
+                currentPosList = RandomPosList;
+                break;
+            case E_PopTransType.RouteOne:
+                currentPosList = RouteOne;
+                break;
+            case E_PopTransType.RouteTwo:
+                currentPosList = RouteTwo;
+                break;
+            case E_PopTransType.RouteThree:
+                currentPosList = RouteThree;
+                break;
+        }
+
+        //设置弹窗数量限制
+        maxPopupCount = popData.popNum;
+        //设置 弹窗生长时间
+        growPopInterval = popData.growInterval;
+        //设置 弹窗和弹窗生长间隔
+        popInterval = popData.popInterval;
     }
 
     // //测试使用
@@ -71,10 +109,12 @@ public class PopupBugGame : MonoBehaviour
     // {
     //     if (Input.GetKeyDown(KeyCode.Space))
     //     {
-            
+
     //         StartCoroutine(CreatePopup());
     //     }
     // }
+
+    //生成弹窗
     private IEnumerator CreatePopup()
     {
         //预留缓冲时间
@@ -97,11 +137,11 @@ public class PopupBugGame : MonoBehaviour
                 mainPupObj = Instantiate(bigPopupPrefab, imageRange.transform);
                 mainPupObj.transform.SetParent(imageRange.transform, false);
                 //设置弹窗数据
-                mainPupObj.GetComponent<Pup>().InitPop(popData); 
+                mainPupObj.GetComponent<Pup>().InitPop(popData);
             }
 
 
-             // 获取当前弹窗的位置，循环使用位置列表 
+            // 获取当前弹窗的位置，循环使用位置列表 
             Vector2 position = currentPosList[positionIndex].anchoredPosition;
 
             // 限制位置不超过边界
@@ -113,31 +153,32 @@ public class PopupBugGame : MonoBehaviour
             positionIndex = (positionIndex + 1) % currentPosList.Count;
             // 增加弹窗数量
             currentPopupCount++;
-            yield return new WaitForSeconds(0.15f);
-             //如果的多个弹窗类型 则进行弹窗生长
+            yield return new WaitForSeconds(popInterval);
+            //如果的多个弹窗类型 则进行弹窗生长
             switch (popData.popCount)
             {
                 case E_PopCount.One: //单个不做处理
                     break;
                 case E_PopCount.Two:
                     yield return new WaitForSeconds(0.1f);
-                    yield return GrowPop(popData.growDir, 1,mainPupObj.GetComponent<RectTransform>());
-              
+                    yield return GrowPop(popData.growDir, 1, mainPupObj.GetComponent<RectTransform>());
+
                     break;
                 case E_PopCount.Three:
                     yield return new WaitForSeconds(0.1f);
-                    yield return GrowPop(popData.growDir, 2,mainPupObj.GetComponent<RectTransform>());
-         
+                    yield return GrowPop(popData.growDir, 2, mainPupObj.GetComponent<RectTransform>());
+
                     break;
                 case E_PopCount.Four:
                     yield return new WaitForSeconds(0.1f);
-                    yield return GrowPop(popData.growDir, 3,mainPupObj.GetComponent<RectTransform>());
-                
+                    yield return GrowPop(popData.growDir, 3, mainPupObj.GetComponent<RectTransform>());
+
                     break;
             }
         }
 
     }
+  
     #region 弹窗生长
     private IEnumerator GrowPop(E_PopGrowDir growDir, int count,RectTransform mainRect)
     {
@@ -168,7 +209,7 @@ public class PopupBugGame : MonoBehaviour
 
             // 设置弹窗最终位置
             newRect.anchoredPosition = newPosition;
-            yield return new WaitForSeconds(interval);
+            yield return new WaitForSeconds(growPopInterval);
         }
     }
 
@@ -230,9 +271,9 @@ public class PopupBugGame : MonoBehaviour
 
         return position;
     }
-    
-    #endregion
-    
 
-    
+    #endregion
+
+
+
 }

@@ -25,7 +25,7 @@ public class Pup : MonoBehaviour
         closeButton.onClick.AddListener(OnCloseButtonClick);
 
         // StartCoroutine(MoveHorizontalCloseButton());
-        StartCoroutine(RandomMoveCloseButton());
+        // StartCoroutine(RandomMoveCloseButton());
     }
     // 初始化弹窗数据
     public void InitPop(PopupData data)
@@ -54,11 +54,18 @@ public class Pup : MonoBehaviour
     // 关闭按钮点击事件
     private void OnCloseButtonClick()
     {
-        //减少怒气值 
-        AngerMeterSystem.Instance.ReduceAngerValue(10f);
-        Debug.Log("当前怒气值：" + AngerMeterSystem.Instance.CurrentAngerValue);
+        //如果当前Debug类型不是点击类 则直接返回
+        if(DebugMgr.Instance.currentDebugType != E_DebugType.PopUpGame)
+        {
+            Debug.Log("当前Debug类型不是点击类 无法关闭弹窗");
+            return;
+        }
+        //TODO:BugType
+        if(popupData.bugType == E_BugType.InputBugGame)
+            AngerMeterSystem.Instance.ReduceAngerValue(popupData.reduceValue);
         //TODO：优化 缓存池
         Destroy(this.gameObject);
+        //减少怒气值 
     }
     // 随机移动关闭按钮
     private IEnumerator RandomMoveCloseButton()
