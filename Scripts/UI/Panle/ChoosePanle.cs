@@ -34,7 +34,7 @@ public class ChoosePanle : BasePanle
     {
          SceneMgr.Instance.LoadSceneAsyn("Leve2", () =>
         {
-            UIMgr.Instance.Show<LeveOneGamePanle>();
+            UIMgr.Instance.Show<LeveTwoGamePanle>();
         });
         UIMgr.Instance.Hide<ChoosePanle>();
     }

@@ -20,4 +20,14 @@ public enum E_EventType
     /// 
     /// </summary>
     E_CrawBugGame,
+
+    /// <summary> 框选游戏
+    /// 
+    /// </summary>
+    E_SelectBugGame,
+
+    /// <summary> 拾色器游戏
+    /// 
+    /// </summary>
+    E_PickColorBugGame,
 }

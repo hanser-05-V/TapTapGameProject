@@ -12,4 +12,6 @@ public enum E_DebugType
     SeleBugGame,
     //拾色游戏
     PickColorGame,
+    //拖拽类
+    DrapBugGame,
 }

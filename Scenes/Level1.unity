@@ -1484,6 +1484,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isGameStart: 0
   isGameOver: 0
+  currentDebugPoint: 100
+  canDebug: 1
 --- !u!4 &1397701027
 Transform:
   m_ObjectHideFlags: 0

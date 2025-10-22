@@ -69,7 +69,7 @@ public class LeveTwoGamePanle : BasePanle
         //TODO:优化性能
         currentDebugPoint = GameDataMgr.Instance.currentDebugPoint;
         //避免每帧都更新文字
-        if(currentDebugPoint != lastDebugPoint)
+        if (currentDebugPoint != lastDebugPoint)
         {
             //更新显示
             debupPointText.text = currentDebugPoint.ToString();
@@ -89,7 +89,7 @@ public class LeveTwoGamePanle : BasePanle
     private void OnGameOverButtonClick()
     {
         Debug.Log("签到按钮点击");
-        
+
         if (GameDataMgr.Instance.isGameStart && GameDataMgr.Instance.isGameOver)
         {
             //TODO:游戏通过逻辑
@@ -97,15 +97,17 @@ public class LeveTwoGamePanle : BasePanle
         }
     }
     #endregion
-  
+
     //显示开始游戏 //TODO:测试公开
     public void StartGame()
     {
-   
+
         StartCoroutine(RealStartGame());
     }
     private IEnumerator RealStartGame()
     {
+        yield return new WaitForSeconds(0.5f);//等待数据缓冲
+
         //读取数据
         LeveTwoInfo leveTwoData = leveTwoDataList[index];
 
@@ -129,7 +131,7 @@ public class LeveTwoGamePanle : BasePanle
             {
                 //触发爬行游戏
                 EventCenter.Instance.EventTrigger(E_EventType.E_CrawBugGame, bugData);
-                
+
                 //游戏开始标志
                 GameDataMgr.Instance.isGameStart = true;
             }
@@ -138,14 +140,14 @@ public class LeveTwoGamePanle : BasePanle
         SendMassage(leveTwoData.studentTalk, leveTwoData.teacherTalk); //TODO:出现位置优化
         yield return new WaitForSeconds(1f); //等待几秒过后 把对话面板隐藏
 
-         //TODO：测试先硬编码加载
+        //TODO：测试先硬编码加载
         imageTalkBubble.gameObject.SetActive(false);
 
         // UIMgr.Instance.Hide<LeveTwoTalkPanle>();  //TODO:缓存池子优化
         //发送消息
         yield return new WaitForSeconds(leveTwoData.InverTime);
         index++;
-        if (index > leveTwoDataList.Count-1)
+        if (index > leveTwoDataList.Count - 1)
         {
             Debug.Log("读取结束");
             yield break;
@@ -175,8 +177,14 @@ public class LeveTwoGamePanle : BasePanle
             talkContent.text = teacherTalk;
 
 
-             //TODO：测试先硬编码加载
+            //TODO：测试先硬编码加载
             // UIMgr.Instance.Show<LeveTwoTalkPanle>(false).ChangeTalk(studentTalkList[0], teacherTalk); //TODO:出现位置优化
         }
+    }
+
+    override public void Showme(bool isFade = true)
+    {
+        base.Showme(isFade);
+        StartGame();
     }
 }

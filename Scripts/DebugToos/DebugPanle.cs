@@ -9,6 +9,7 @@ public class DebugPanle : MonoBehaviour
     public GameObject CrawObj;
     public GameObject SeleBugGame;
     public GameObject SeleCrawGame;
+    public GameObject DrapBugGame;
 
     private float defultScale;
     private void Awake()
@@ -24,6 +25,6 @@ public class DebugPanle : MonoBehaviour
         CrawObj.transform.localScale = new Vector3(defultScale, defultScale, defultScale);
         SeleBugGame.transform.localScale = new Vector3(defultScale, defultScale, defultScale);
         SeleCrawGame.transform.localScale = new Vector3(defultScale, defultScale, defultScale);
-    
+        DrapBugGame.transform.localScale = new Vector3(defultScale, defultScale, defultScale);
     }
 }

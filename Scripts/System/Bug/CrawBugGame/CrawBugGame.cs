@@ -67,22 +67,7 @@ public class CrawBugGame : MonoBehaviour
             crawDataList.Add(crawSingleData);
         if (crawDataList.Count != 0)
         {
-            //
-            // foreach (var crawData in crawDataList)
-            // {
-            //     for (int i = 0; i < crawData.crawNum; i++)
-            //     {
-            //         //创建爬虫
-            //         GameObject crawObj = PoolMgr.Instance.GetObj("Craw");
-            //         Craw craw = crawObj.GetComponent<Craw>();
-            //         craw.SetCrawData(crawData);
-            //         crawObj.transform.position = SetCrawPos(crawData);
-
-            //         //添加到列表
-            //         crawList.Add(craw);
-            //     }
-
-            // }
+          
             StartCoroutine(CreatCrawCoroutine());
         }
         else

@@ -52,6 +52,11 @@ public class LeveOneGamePanle : BasePanle
     private void OnSetButtonClick()
     {
         //打开 游戏内设置面板
+        //TODO:这里先以失败面板
+        //隐藏面板
+            UIMgr.Instance.Hide<LeveOneGamePanle>();
+
+        UIMgr.Instance.Show<ChoosePanle>();
     }
     private void Update()
     {

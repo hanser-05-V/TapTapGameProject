@@ -1,7 +1,7 @@
 [
 {"id":2,"studentTalk":"test1","teacherTalk":"","InvertTime":2,"isBugShow":false,"DataName":""},
 {"id":2,"studentTalk":"","teacherTalk":"test2","InvertTime":2,"isBugShow":false,"DataName":""},
-{"id":1,"studentTalk":"test3","teacherTalk":"","InvertTime":2,"isBugShow":false,"DataName":"1"},
+{"id":1,"studentTalk":"test3","teacherTalk":"","InvertTime":2,"isBugShow":true,"DataName":"1"},
 {"id":2,"studentTalk":"test4","teacherTalk":"","InvertTime":2,"isBugShow":true,"DataName":"Group/CrawListData"},
 {"id":2,"studentTalk":"","teacherTalk":"test5","InvertTime":2,"isBugShow":false,"DataName":""},
 {"id":2,"studentTalk":"test6","teacherTalk":"","InvertTime":2,"isBugShow":false,"DataName":""},

@@ -617,7 +617,7 @@ GameObject:
   - component: {fileID: 3766158477836765355}
   - component: {fileID: 4187251883506168143}
   m_Layer: 0
-  m_Name: BugGame
+  m_Name: PopGame
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
